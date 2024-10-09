@@ -5,4 +5,5 @@
     <color name="blue">#FF0077FF</color>
     <color name="skyBlue">#FF00DDFF</color>
     <color name="wBlue">#FF77DDFF</color>
+    <color name="gray">#FFAAAAAA</color>
 </resources>
