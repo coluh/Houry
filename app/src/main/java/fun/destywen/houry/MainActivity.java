@@ -10,8 +10,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
+
+import fun.destywen.houry.fragments.PostListFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,16 +38,22 @@ public class MainActivity extends AppCompatActivity {
                 toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        // set
+        // set navigation listener
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
+            Fragment fragment = null;
             if (id == R.id.nav_home) {
                 Toast.makeText(this, "Go home", Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.nav_post) {
+                fragment = new PostListFragment();
             } else {
                 Toast.makeText(this, "Not Implement", Toast.LENGTH_SHORT).show();
             }
-            drawerLayout.close();
+            if (fragment != null) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fg, fragment).commit();
+                drawerLayout.close();
+            }
             return false; // show item chosen state in navigation view
         });
     }
