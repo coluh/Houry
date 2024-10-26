@@ -1,7 +1,16 @@
 <resources>
-    <string name="app_name">Houry</string>
+    <string name="app_name" translatable="false">Houry</string>
     <string name="navigation_drawer_open">navigation_drawer_open</string>
     <string name="navigation_drawer_close">navigation_drawer_close</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="post_input_hint">Input Something</string>
+    <string name="post_tag_hint">tag</string>
+    <string name="post_submit">Submit</string>
+    <string name="post_cancel">Cancel</string>
+    <string name="post_new">New Post</string>
+    <string name="home" translatable="false">Home</string>
+    <string name="moment">Moment</string>
+    <string name="article">Article</string>
+    <string name="setting">Setting</string>
+    <string name="sign">Every moment in life matters.</string>
 </resources>

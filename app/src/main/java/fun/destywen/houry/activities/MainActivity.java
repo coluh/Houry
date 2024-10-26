@@ -1,4 +1,4 @@
-package fun.destywen.houry;
+package fun.destywen.houry.activities;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
 
+import fun.destywen.houry.R;
+import fun.destywen.houry.fragments.HomeFragment;
 import fun.destywen.houry.fragments.PostListFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fg, new HomeFragment()).commit();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             int id = item.getItemId();
             Fragment fragment = null;
             if (id == R.id.nav_home) {
-                Toast.makeText(this, "Go home", Toast.LENGTH_SHORT).show();
+                fragment = new HomeFragment();
             } else if (id == R.id.nav_post) {
                 fragment = new PostListFragment();
             } else {

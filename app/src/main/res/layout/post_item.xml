@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:layout_marginTop="0dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginHorizontal="4dp"
+    android:paddingBottom="10sp"
+    android:paddingHorizontal="10sp"
+    android:background="@color/mauve"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -8,14 +14,22 @@
         android:id="@+id/post_tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="textEnd" />
+        android:text="Tag"
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
+        android:textStyle="italic"/>
     <TextView
         android:id="@+id/post_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="一长串测试文本一长串测试文本一长串测试文本一长串测试文本一长串测试文本一长串测试文本"/>
     <TextView
         android:id="@+id/post_time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray7"
+        android:textSize="14sp"
+        android:text="2024-02-03 19:02:33"/>
 
 </LinearLayout>

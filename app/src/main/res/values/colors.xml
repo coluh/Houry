@@ -2,8 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="blue">#FF0077FF</color>
+    <color name="blue">#FF4499FF</color>
     <color name="skyBlue">#FF00DDFF</color>
     <color name="wBlue">#FF77DDFF</color>
     <color name="gray">#FFAAAAAA</color>
+    <color name="gray7">#FF777777</color>
+    <color name="mauve">#FFDCD6F7</color>
+    <color name="purple">#FFA6B1E1</color>
+    <color name="lightPink">#FFF1DEDE</color>
 </resources>
