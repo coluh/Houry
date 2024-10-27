@@ -2,7 +2,6 @@ package fun.destywen.houry.adapters;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ import fun.destywen.houry.R;
 import fun.destywen.houry.database.entity.Post;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
-    private List<Post> mData;
+    private final List<Post> mData;
     private File filesDir;
 
     public PostAdapter(List<Post> mData) {

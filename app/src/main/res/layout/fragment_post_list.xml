@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple"
+            android:background="@color/mauve"
             android:layout_margin="4dp"
             android:padding="10sp"
             android:orientation="horizontal">
@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="8sp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:text="@string/sign"
                 android:textStyle="italic|bold" />
 

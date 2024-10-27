@@ -1,5 +1,6 @@
 package fun.destywen.houry.database.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -68,6 +69,7 @@ public class Post {
         this.content = content;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Post{" +
