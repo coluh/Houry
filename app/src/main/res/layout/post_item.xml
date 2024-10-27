@@ -4,8 +4,8 @@
     android:layout_marginTop="0dp"
     android:layout_marginBottom="4dp"
     android:layout_marginHorizontal="4dp"
-    android:paddingBottom="10sp"
-    android:paddingHorizontal="10sp"
+    android:paddingBottom="5dp"
+    android:paddingHorizontal="5dp"
     android:background="@color/mauve"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -14,7 +14,6 @@
         android:id="@+id/post_tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tag"
         android:textAlignment="textEnd"
         android:textSize="16sp"
         android:textStyle="italic"/>
@@ -22,14 +21,20 @@
         android:id="@+id/post_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="一长串测试文本一长串测试文本一长串测试文本一长串测试文本一长串测试文本一长串测试文本"/>
+        android:textSize="16sp" />
+    <ImageView
+        android:id="@+id/post_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"/>
     <TextView
         android:id="@+id/post_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/gray7"
-        android:textSize="14sp"
-        android:text="2024-02-03 19:02:33"/>
+        android:textSize="14sp" />
+
 
 </LinearLayout>

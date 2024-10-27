@@ -17,7 +17,7 @@ public class MyApplication extends Application {
         mApp = this;
 
         appDatabase = Room.databaseBuilder(this, AppDatabase.class, "destywen")
-//                .addMigrations()
+                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build();
     }

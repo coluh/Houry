@@ -13,4 +13,5 @@
     <string name="article">Article</string>
     <string name="setting">Setting</string>
     <string name="sign">Every moment in life matters.</string>
+    <string name="todo" translatable="false">TODO</string>
 </resources>

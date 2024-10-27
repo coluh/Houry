@@ -2,6 +2,9 @@ package fun.destywen.houry.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 import fun.destywen.houry.MyApplication;
 import fun.destywen.houry.R;
@@ -29,7 +38,7 @@ import fun.destywen.houry.database.entity.Post;
 
 public class PostListFragment extends Fragment {
 
-    private static final String TAG = "coluh";
+    private static final String TAG = "c_o_l_u_h";
     PostDao postDao;
     private PostAdapter adapter;
     private RecyclerView recyclerView;
@@ -41,6 +50,11 @@ public class PostListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         postDao = MyApplication.getInstance().getDB().postDao();
+        File directory = new File(requireContext().getFilesDir(), "images");
+        if (!directory.exists()) {
+            boolean success = directory.mkdirs();
+            assert success;
+        }
     }
 
     @Override
@@ -57,6 +71,7 @@ public class PostListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.postList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new PostAdapter(getPostData());
+        adapter.setFilesDir(requireContext().getFilesDir());
         recyclerView.setAdapter(adapter);
 
         ActivityResultLauncher<Intent> register = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -67,7 +82,8 @@ public class PostListFragment extends Fragment {
                     assert bundle != null;
                     String tag = bundle.getString("tag");
                     String content = bundle.getString("content");
-                    insertPost(tag, content);
+                    Uri imgUri = bundle.getParcelable("image");
+                    insertPost(tag, content, imgUri);
                 }
             }
         });
@@ -77,17 +93,6 @@ public class PostListFragment extends Fragment {
             Intent intent = new Intent(getContext(), PostActivity.class);
             register.launch(intent);
         });
-
-//        Button button = view.findViewById(R.id.test_insert);
-//        button.setOnClickListener(view1 -> {
-//            Post post = new Post();
-//            post.setTime(System.currentTimeMillis());
-//            post.setTag("Test");
-//            post.setContent("This is a test message.");
-//            postDao.insert(post);
-//            adapter.notifyInsert(post);
-//            recyclerView.scrollToPosition(0);
-//        });
     }
 
     private List<Post> getPostData() {
@@ -98,14 +103,39 @@ public class PostListFragment extends Fragment {
         return postDao.queryAll();
     }
 
-    public void insertPost(String tag, String content) {
+    public void insertPost(String tag, String content, Uri imgUri) {
         Post post = new Post();
         post.setTag(tag);
         post.setContent(content);
         post.setTime(System.currentTimeMillis());
+        post.setUuid(saveImage(imgUri));
         postDao.insert(post);
 
         adapter.notifyInsert(post);
         recyclerView.scrollToPosition(0);
+    }
+
+    // return the uuid assigned
+    private String saveImage(Uri imgUri) {
+        if (imgUri == null)
+            return "";
+        Bitmap image;
+        try {
+            image = BitmapFactory.decodeStream(requireContext().getContentResolver().openInputStream(imgUri));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        if (image != null) {
+            String uuid = UUID.randomUUID().toString();
+            Log.d(TAG, "insertPost: UUID: " + uuid);
+            File imageFile = new File(requireContext().getFilesDir(), "images/" + uuid + ".jpg");
+            try (FileOutputStream out = new FileOutputStream(imageFile)) {
+                image.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return uuid;
+        }
+        return "";
     }
 }
