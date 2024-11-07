@@ -69,14 +69,14 @@ public class Post {
         this.content = content;
     }
 
-    @NonNull
     @Override
     public String toString() {
         return "Post{" +
                 "id=" + id +
                 ", time=" + time +
-                ", tag=" + tag +
+                ", tag='" + tag + '\'' +
                 ", content='" + content + '\'' +
+                ", uuid='" + uuid + '\'' +
                 '}';
     }
 }

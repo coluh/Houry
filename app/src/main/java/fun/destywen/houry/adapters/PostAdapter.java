@@ -47,6 +47,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         Post item = mData.get(position);
         holder.tag.setText(item.getTag());
         holder.content.setText(item.getContent());
+        holder.image.setVisibility(View.VISIBLE);
+        holder.image.setImageBitmap(null);
         if (Objects.equals(item.getUuid(), "")) {
             holder.image.setVisibility(View.GONE);
         } else {
