@@ -1,11 +1,15 @@
 package fun.destywen.houry.activities;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -17,6 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 import fun.destywen.houry.R;
 import fun.destywen.houry.fragments.HomeFragment;
 import fun.destywen.houry.fragments.PostListFragment;
+import fun.destywen.houry.fragments.RemoteFileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +55,15 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new HomeFragment();
             } else if (id == R.id.nav_post) {
                 fragment = new PostListFragment();
+            } else if (id == R.id.nav_file) {
+                fragment = new RemoteFileFragment();
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CHANGE_WIFI_MULTICAST_STATE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[] {
+                            Manifest.permission.INTERNET,
+                            Manifest.permission.ACCESS_WIFI_STATE,
+                            Manifest.permission.CHANGE_WIFI_MULTICAST_STATE,
+                    }, 7401);
+                }
             } else {
                 Toast.makeText(this, "Not Implement", Toast.LENGTH_SHORT).show();
             }

@@ -8,8 +8,8 @@
             android:id="@+id/nav_post"
             android:title="@string/moment"/>
         <item
-            android:id="@+id/nav_article"
-            android:title="@string/article"/>
+            android:id="@+id/nav_file"
+            android:title="@string/file"/>
         <item
             android:id="@+id/nav_setting"
             android:title="@string/setting"/>

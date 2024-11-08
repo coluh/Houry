@@ -10,7 +10,7 @@
     <string name="post_new">New Post</string>
     <string name="home" translatable="false">Home</string>
     <string name="moment">Moment</string>
-    <string name="article">Article</string>
+    <string name="file">File</string>
     <string name="setting">Setting</string>
     <string name="sign">Every moment in life matters.</string>
     <string name="todo" translatable="false">TODO</string>

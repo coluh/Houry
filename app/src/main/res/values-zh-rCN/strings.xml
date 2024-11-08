@@ -9,7 +9,7 @@
     <string name="post_cancel">取消</string>
     <string name="post_new">新动态</string>
     <string name="moment">动态</string>
-    <string name="article">文章</string>
+    <string name="file">文件</string>
     <string name="setting">设置</string>
     <string name="sign">生活的每一刻都值得记录</string>
 </resources>
