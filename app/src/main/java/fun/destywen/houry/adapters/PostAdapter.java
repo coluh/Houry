@@ -2,6 +2,7 @@ package fun.destywen.houry.adapters;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import fun.destywen.houry.R;
 import fun.destywen.houry.database.entity.Post;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
+    private static final String TAG = "c_o_l_u_h";
+
     private final List<Post> mData;
     private File filesDir;
 
@@ -42,6 +47,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    private final Map<String, Bitmap> images = new HashMap<>();
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post item = mData.get(position);
@@ -49,10 +56,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.content.setText(item.getContent());
         holder.image.setVisibility(View.VISIBLE);
         holder.image.setImageBitmap(null);
+//        Log.d(TAG, "onBindViewHolder: set " + item.getContent() + " image: " + item.getUuid());
         if (Objects.equals(item.getUuid(), "")) {
             holder.image.setVisibility(View.GONE);
         } else {
-            holder.image.setImageBitmap(loadImage(item.getUuid()));
+            if (images.get(item.getUuid()) == null) {
+                images.put(item.getUuid(), loadImage(item.getUuid()));
+            }
+            holder.image.setImageBitmap(images.get(item.getUuid()));
         }
         holder.time.setText(item.getTimeFormated());
     }
