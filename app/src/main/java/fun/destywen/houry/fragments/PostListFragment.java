@@ -71,6 +71,7 @@ public class PostListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new PostAdapter(getPostData());
         adapter.setFilesDir(requireContext().getFilesDir());
+        adapter.setPostDao(postDao);
         recyclerView.setAdapter(adapter);
 
         ActivityResultLauncher<Intent> register = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {

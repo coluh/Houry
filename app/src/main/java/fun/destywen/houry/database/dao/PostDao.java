@@ -19,9 +19,8 @@ public interface PostDao {
     @Delete
     void delete(Post post);
 
-    // You better not call this
-    @Query("DELETE FROM Post")
-    void deleteAll();
+    @Query("DELETE FROM Post WHERE id = :id")
+    void deleteById(int id);
 
     @Update
     int update(Post post);
