@@ -100,7 +100,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         if (imageFile.exists()) {
             return BitmapFactory.decodeFile(imageFile.getAbsolutePath());
         } else {
-            throw new RuntimeException("Image Gone!!");
+//            throw new RuntimeException("Image Gone!!");
+            return Bitmap.createBitmap(200, 100, Bitmap.Config.ARGB_8888);
         }
     }
 
